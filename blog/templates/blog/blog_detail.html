@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main" class="alt">
+						<!-- One -->
+							<section id="one">
+								<div class="inner">
+									<header class="major">
+										<h1>{{ blog.name }}</h1>
+
+										<h4><i class="fa fa-user"></i>{{ blog.author }}  &nbsp;&nbsp;&nbsp;&nbsp;  <i class="fa fa-calendar"></i> {{ blog.post_date }}   &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-eye"></i> 114</h4>
+									</header>
+									<span class="image main"><img src="{{ blog.image_url|default_if_none:'#' }}" alt="" /></span>
+									{{ blog.description }}
+								</div>
+							</section>
+
+					</div>
+
+					<section id="contact">
+						<div class="inner">
+							<section>
+								<header class="major">
+									<h2>Leave a Comment</h2>
+								</header>
+									<div class="field half text-right">
+										<ul class="actions">
+											{% if user.is_authenticated %}
+											  <li><a href="{% url 'blog_comment' blog.id %}" class="primary">Add a new comment</a></li>
+											{% else %}
+											  <li><a href="{% url 'login'%}?next={{request.path}}" class="primary">Login</a> to add a new comment<li>
+											{% endif %}
+										</ul>
+									</div>
+							</section>
+
+							<section class="split">
+								{% for comment in blog.blogcomment_set.all %}
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-info"></span>
+										<h3>{{comment.author}}--({{comment.post_date}})</h3>
+										<span>{{comment.description}}</span>
+									</div>
+								</section>
+								{% endfor %}
+								<section>
+									<div class="contact-method">
+										<span class="icon alt fa-share"></span>
+										<h3>Share</h3>
+
+										<p style="position: relative;">
+											<a href="#" style="position: relative;" class="icon alt fa-twitter"><span class="label">Twitter</span></a> &nbsp;
+											<a href="#" style="position: relative;" class="icon alt fa-facebook"><span class="label">Facebook</span></a> &nbsp;
+											<a href="#" style="position: relative;" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a> &nbsp;
+											<a href="#" style="position: relative;" class="icon alt fa-behance"><span class="label">Behance</span></a>
+										</p>
+									</div>
+								</section>
+							</section>
+						</div>
+					</section>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<ul class="icons">
+							<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>Copyright © 2020 Company Name - Template by:</li>
+							<li> <a href="https://www.phpjabbers.com/">PHPJabbers.com</a></li>
+						</ul>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+
+{% endblock %}
