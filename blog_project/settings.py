@@ -84,7 +84,7 @@ DATABASES = {
         'USER':'djangouser',
         'PASSWORD':'djangopwd',
         'HOST':'localhost',
-        'PORT':''
+        'PORT':'1'
     }
 }
 
