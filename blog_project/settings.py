@@ -85,7 +85,6 @@ DATABASES = {
         'PASSWORD':'djangopwd',
         'HOST':'localhost',
         'PORT':'10',
-        'PORT':'11'
     }
 }
 
